@@ -19,3 +19,11 @@ public abstract class Penumpang implements Pembayaran {
         else if (umur > 60) kategori = Kategori.LANSIA;
         else kategori = Kategori.BIASA;
     }
+
+    @Override
+    public void bayar(int ongkos) throws SaldoTidakCukupException {
+        if (saldo < ongkos) {
+            throw new SaldoTidakCukupException();
+        }
+        saldo -= ongkos;
+    }
