@@ -27,3 +27,13 @@ public abstract class Penumpang implements Pembayaran {
         }
         saldo -= ongkos;
     }
+
+    public int getID() { return id; }
+    public Kategori getKategori() { return kategori; }
+    public int getSaldo() { return saldo; }
+
+    @Override
+    public String toString() {
+        return "ID:" + id + " (" + kategori + ", saldo=" + saldo + ")";
+    }
+}
