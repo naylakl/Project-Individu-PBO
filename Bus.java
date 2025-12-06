@@ -13,3 +13,7 @@ public class Bus {
         biasa = new ArrayList<>();
         berdiri = new ArrayList<>();
     }
+
+    // ===========================
+    //   CEK ID SUDAH TERDAFTAR
+    // ===========================
