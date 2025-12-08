@@ -17,3 +17,21 @@ public class Bus {
     // ===========================
     //   CEK ID SUDAH TERDAFTAR
     // ===========================
+    public boolean idSudahAda(int id) {
+        return prioritas.stream().anyMatch(p -> p.getID() == id) ||
+               biasa.stream().anyMatch(p -> p.getID() == id) ||
+               berdiri.stream().anyMatch(p -> p.getID() == id);
+    }
+
+    private boolean isPrioritas(Penumpang p) {
+        return p.getKategori() != Kategori.BIASA;
+    }
+
+    private int total() {
+        return prioritas.size() + biasa.size() + berdiri.size();
+    }
+
+    public void naik(Penumpang p) throws BusPenuhException, SaldoTidakCukupException {
+        if (total() >= 40) {
+            throw new BusPenuhException();
+        }
