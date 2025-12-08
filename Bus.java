@@ -35,3 +35,40 @@ public class Bus {
         if (total() >= 40) {
             throw new BusPenuhException();
         }
+        
+        // Bayar ongkos
+        p.bayar(ONGKOS);
+        pendapatan += ONGKOS;
+
+        // Atur kursi sesuai prioritas
+        if (isPrioritas(p) && prioritas.size() < 4) {
+            prioritas.add(p);
+        } else if (biasa.size() < 16) {
+            biasa.add(p);
+        } else if (berdiri.size() < 20) {
+            berdiri.add(p);
+        } else {
+            throw new BusPenuhException();
+        }
+    }
+
+    public boolean turun(int id) {
+        // removeIf hanya menghapus SATU penumpang pertama yang cocok
+        if (prioritas.removeIf(p -> p.getID() == id)) return true;
+        if (biasa.removeIf(p -> p.getID() == id)) return true;
+        if (berdiri.removeIf(p -> p.getID() == id)) return true;
+
+        return false;
+    }
+
+    @Override
+    public String toString() {
+        return "\n=== STATUS BUS ===" +
+               "\nPrioritas: " + prioritas +
+               "\nBiasa:     " + biasa +
+               "\nBerdiri:   " + berdiri +
+               "\nTotal Penumpang: " + total() +
+               "\nPendapatan: Rp " + pendapatan +
+               "\n==================\n";
+    }
+}
